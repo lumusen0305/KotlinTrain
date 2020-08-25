@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         >
         <EditText
+            android:id="@+id/mVerifyCodeEt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,14 +25,15 @@
 
 
     <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="輸入密碼"/>
+        android:id="@+id/mPwdEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="輸入密碼"/>
     <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="確認密碼"/>
-
+        android:id="@+id/mPwdVerifyEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="確認密碼"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

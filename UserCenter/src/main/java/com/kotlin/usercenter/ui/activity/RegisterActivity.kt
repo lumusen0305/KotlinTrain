@@ -19,7 +19,7 @@ class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterView {
         btn_click.setOnClickListener{
             mPresenter= RegisterPresenter()
             mPresenter.mView=this
-            mPresenter.register(" "," ")
+            mPresenter.register(mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
         }
     }
 }

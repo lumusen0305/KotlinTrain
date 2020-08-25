@@ -11,9 +11,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class RegisterPresenter : BasePresenter<RegisterView>(){
     val userService = UserServiceImpl()
-
-    fun register(pwd:String,vertifyCode:String){
-        userService.register(pwd,vertifyCode)
+    //業務邏輯
+    fun register(pwd:String,verifyCode:String){
+        userService.register(pwd,verifyCode)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribeBy(  // named arguments for lambda Subscribers
