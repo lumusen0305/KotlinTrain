@@ -14,6 +14,7 @@ open class UserServiceImpl :UserService {
             .flatMap(object :Function<BaseResp<String>,Observable<Boolean>>{
                 override fun apply(t: BaseResp<String>): Observable<Boolean> {
                    if(t.status != 0){
+                       print("====="+t.status+t.msg+"====")
                        return Observable.error(BaseException(t.status,t.msg))
                    }
                     return Observable.just(true)
