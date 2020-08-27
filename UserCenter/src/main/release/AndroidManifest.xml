@@ -3,7 +3,9 @@
     package="com.kotlin.usercenter">
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <application android:theme="@style/AppTheme">
+    <application android:theme="@style/AppTheme"
+                android:name="com.kotlin.baselibrary.common.BaseApplication"
+        >
         <activity android:name=".ui.activity.TestActivity"></activity>
         <activity android:name=".ui.activity.RegisterActivity"></activity>
     </application>
