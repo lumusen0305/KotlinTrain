@@ -2,6 +2,8 @@ package com.kotlin.usercenter.ui.activity
 import android.os.Bundle
 import com.kotlin.baselibrary.ui.activity.BaseMVPActivity
 import com.kotlin.usercenter.R
+import com.kotlin.usercenter.injection.component.DaggerUserComponent
+import com.kotlin.usercenter.injection.module.UserModule
 import com.kotlin.usercenter.presenter.RegisterPresenter
 import com.kotlin.usercenter.presenter.view.RegisterView
 import dagger.android.DaggerActivity
@@ -28,6 +30,7 @@ class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterView {
     }
 
     private fun initInjection() {
+        DaggerUserComponent.builder().userModule(UserModule()).build().inject(this)
             mPresenter.mView=this
 
     }

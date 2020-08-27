@@ -6,6 +6,6 @@ import dagger.Component
 
 @Component(modules = arrayOf(UserModule::class))
 interface UserComponent {
-    fun infect(activity:RegisterActivity)
+    fun inject(activity:RegisterActivity)
 
 }
