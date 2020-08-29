@@ -70,5 +70,9 @@ dependencies {
     api "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+    //rxlifecycle
+    api "com.trello.rxlifecycle4:rxlifecycle:$rx_lifecycle_version"
+    api "com.trello.rxlifecycle4:rxlifecycle-components:$rx_lifecycle_version"
+
 
 }

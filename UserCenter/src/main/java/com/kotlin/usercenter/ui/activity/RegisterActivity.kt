@@ -14,7 +14,11 @@ import javax.inject.Inject
 
 class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterView {
     override fun onRegisterResult(result: Boolean) {
-        toast("註冊成功")
+        if(result) {
+            toast("註冊成功")
+        }else{
+            toast("註冊失敗")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +30,9 @@ class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterView {
 
         btn_click.setOnClickListener{
             mPresenter.register(mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
+        }
+        mGetVerifyCode.setOnClickListener{
+            mPresenter.register2(mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
         }
     }
 
