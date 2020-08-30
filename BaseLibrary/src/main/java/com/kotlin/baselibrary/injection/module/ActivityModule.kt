@@ -2,6 +2,7 @@ package com.kotlin.baselibrary.injection.module
 
 import android.app.Activity
 import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

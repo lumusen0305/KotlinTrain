@@ -17,34 +17,38 @@ class RegisterPresenter @Inject constructor(): BasePresenter<RegisterView>(){
     @field:[Named("service")]
     lateinit var userService:UserService
 
-    @Inject
-    @field:[Named("service2")]
-    lateinit var userService2:UserService
+//    @Inject
+//    @field:[Named("service2")]
+//    lateinit var userService2:UserService
+
 //    val userService = UserServiceImpl()
     //業務邏輯
     fun register(pwd:String,verifyCode:String){
         userService.register(pwd,verifyCode)
             .observeOn(AndroidSchedulers.mainThread())
+            .compose(lifecycleProvider.bindToLifecycle())
             .subscribeOn(Schedulers.io())
             .subscribeBy(  // named arguments for lambda Subscribers
-                onNext = { println("====it====="+it)
-                mView.onRegisterResult(it)
+                onNext = {
+                    if (it){
+                        mView.onRegisterResult("註冊成功")
+                    }
                 },
                 onError =  { it.printStackTrace() },
                 onComplete = { println("Done!") }
             )
     }
 
-    fun register2(pwd:String,verifyCode:String){
-        userService2.register(pwd,verifyCode)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribeBy(  // named arguments for lambda Subscribers
-                onNext = { println("====it====="+it)
-                    mView.onRegisterResult(it)
-                },
-                onError =  { it.printStackTrace() },
-                onComplete = { println("Done!") }
-            )
-    }
+//    fun register2(pwd:String,verifyCode:String){
+//        userService2.register(pwd,verifyCode)
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeOn(Schedulers.io())
+//            .subscribeBy(  // named arguments for lambda Subscribers
+//                onNext = {
+//                    mView.onRegisterResult(it)
+//                },
+//                onError =  { it.printStackTrace() },
+//                onComplete = { println("Done!") }
+//            )
+//    }
 }

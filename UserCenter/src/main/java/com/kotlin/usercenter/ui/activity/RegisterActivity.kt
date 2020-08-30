@@ -13,31 +13,34 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterView {
-    override fun onRegisterResult(result: Boolean) {
-        if(result) {
-            toast("註冊成功")
-        }else{
-            toast("註冊失敗")
-        }
+    override fun onRegisterResult(result: String) {
+        toast(result)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
-        initInjection()
+        injectComponent()
+//        initInjection()
 
 
         btn_click.setOnClickListener{
             mPresenter.register(mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
         }
-        mGetVerifyCode.setOnClickListener{
-            mPresenter.register2(mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
-        }
+//        mGetVerifyCode.setOnClickListener{
+//            mPresenter.register2(mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
+//        }
     }
 
     private fun initInjection() {
         DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
             mPresenter.mView=this
     }
+
+    override fun injectComponent() {
+        DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
+        mPresenter.mView=this
+    }
+
+
 }

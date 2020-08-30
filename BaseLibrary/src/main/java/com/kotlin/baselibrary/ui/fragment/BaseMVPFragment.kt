@@ -1,4 +1,4 @@
-package com.kotlin.baselibrary.ui.activity
+package com.kotlin.baselibrary.ui.fragment
 
 import android.os.Bundle
 import com.kotlin.baselibrary.common.BaseApplication
@@ -10,7 +10,7 @@ import com.kotlin.baselibrary.presenter.BasePresenter
 import com.kotlin.baselibrary.presenter.view.BaseView
 import javax.inject.Inject
 
-open abstract class BaseMVPActivity<T:BasePresenter<*>>: BaseActivity() ,BaseView{
+open abstract class BaseMVPFragment<T:BasePresenter<*>>: BaseFragment() ,BaseView{
     override fun showLoading() {
         TODO("Not yet implemented")
     }
@@ -35,9 +35,9 @@ open abstract class BaseMVPActivity<T:BasePresenter<*>>: BaseActivity() ,BaseVie
     abstract fun injectComponent()
 
     private fun initActivityInjection() {
-        activityComponent=DaggerActivityComponent.builder().appComponent((application as BaseApplication).appComponent).activityModule(
-        ActivityModule(this))
+        activityComponent=DaggerActivityComponent.builder().appComponent((activity!!.application as BaseApplication).appComponent).activityModule(
+        ActivityModule(activity!!))
             .lifecycleProviderModule(LifecycleProviderModule(this))
-            .build()
+            .build()        
     }
 }
