@@ -1,5 +1,6 @@
 package com.kotlin.usercenter.ui.activity
 import android.os.Bundle
+import com.kotlin.baselibrary.common.AppManager
 import com.kotlin.baselibrary.ui.activity.BaseMVPActivity
 import com.kotlin.usercenter.R
 import com.kotlin.usercenter.injection.component.DaggerUserComponent
@@ -13,6 +14,7 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterView {
+    private var pressTime:Long = 0
     override fun onRegisterResult(result: String) {
         toast(result)
     }
@@ -32,6 +34,16 @@ class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterView {
 //        }
     }
 
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        val time = System.currentTimeMillis()
+        if(time-pressTime > 2000){
+            toast("再按一次退出")
+            pressTime = time
+        } else{
+            AppManager.instance.exitApp(this)
+        }
+    }
     private fun initInjection() {
         DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
             mPresenter.mView=this

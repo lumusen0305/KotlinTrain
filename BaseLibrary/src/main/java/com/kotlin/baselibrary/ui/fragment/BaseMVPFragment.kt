@@ -38,6 +38,6 @@ open abstract class BaseMVPFragment<T:BasePresenter<*>>: BaseFragment() ,BaseVie
         activityComponent=DaggerActivityComponent.builder().appComponent((activity!!.application as BaseApplication).appComponent).activityModule(
         ActivityModule(activity!!))
             .lifecycleProviderModule(LifecycleProviderModule(this))
-            .build()        
+            .build()
     }
 }
